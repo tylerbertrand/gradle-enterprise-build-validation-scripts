@@ -6,7 +6,7 @@ import org.gradle.crypto.checksum.Checksum
 plugins {
     id("base")
     id("com.felipefzdz.gradle.shellcheck") version "1.4.6"
-    id("com.github.breadmoirai.github-release") version "2.4.1"
+    id("com.github.breadmoirai.github-release") version "2.5.2"
     id("org.gradle.crypto.checksum") version "1.4.0"
 }
 
@@ -70,8 +70,8 @@ dependencies {
     argbash("argbash:argbash:2.10.0@zip")
     commonComponents("com.gradle.enterprise:build-scan-summary:${buildScanSummaryVersion}")
     mavenComponents(project(":configure-gradle-enterprise-maven-extension"))
-    mavenComponents("com.gradle:gradle-enterprise-maven-extension:1.18.1")
-    mavenComponents("com.gradle:common-custom-user-data-maven-extension:1.12.2")
+    mavenComponents("com.gradle:gradle-enterprise-maven-extension:1.18.4")
+    mavenComponents("com.gradle:common-custom-user-data-maven-extension:1.13")
 }
 
 shellcheck {

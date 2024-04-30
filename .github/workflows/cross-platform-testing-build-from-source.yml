@@ -8,20 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up JDK 8
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '8'
           distribution: 'adopt'
       - name: Set up Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
       - name: Build with Gradle
         run: ./gradlew build
         env:
           GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GE_SOLUTIONS_ACCESS_TOKEN }}
       - name: Upload built script artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artifacts
           path: |
@@ -57,9 +57,9 @@ jobs:
     steps:
       - name: Set up WSL
         if: ${{ runner.os == 'Windows' }}
-        uses: Vampire/setup-wsl@v2
+        uses: Vampire/setup-wsl@v3
         with:
-          distribution: Ubuntu-20.04
+          distribution: Ubuntu-22.04
           additional-packages: curl unzip wget apt-transport-https gnupg
       - name: Set up JDK ${{ matrix.java-version }} on WSL
         if: ${{ runner.os == 'Windows' }}
@@ -70,12 +70,12 @@ jobs:
           sudo apt-get install -y temurin-${{ matrix.java-version }}-jdk
       - name: Set up JDK ${{ matrix.java-version }}
         if: ${{ runner.os != 'Windows' }}
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
       - name: Download built script artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: artifacts
       - name: Extract build validation scripts
